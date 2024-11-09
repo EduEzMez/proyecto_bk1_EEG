@@ -1,1 +1,24 @@
-[]
+[
+  {
+    "id": "EEG1731189264378",
+    "title": "Teclado 1",
+    "description": "Teclado blanco teclas verdes",
+    "code": "TEC001",
+    "price": 3000,
+    "status": true,
+    "stock": 200,
+    "category": "Teclado",
+    "thumbnails": []
+  },
+  {
+    "id": "EEG1731189358722",
+    "title": "Teclado 2",
+    "description": "Teclado negro teclas blancas",
+    "code": "TEC002",
+    "price": 3000,
+    "status": true,
+    "stock": 100,
+    "category": "Teclado",
+    "thumbnails": []
+  }
+]

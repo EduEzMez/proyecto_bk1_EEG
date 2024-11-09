@@ -13,6 +13,13 @@ router.post('/', (req, res) => {
   res.status(201).json(carrito);
 });
 
+// Ruta GET /api/carts para listar todos los carritos
+router.get('/', (req, res) => {
+  const carritos = JSON.parse(fs.readFileSync(path.resolve('src/public/carrito.json')));
+  res.json(carritos);  // Devuelve todos los carritos
+});
+
+
 // Ruta GET /api/carts/:cid
 router.get('/:cid', (req, res) => {
   const { cid } = req.params;

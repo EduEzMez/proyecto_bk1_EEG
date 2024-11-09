@@ -30,7 +30,7 @@ router.post('/', (req, res) => {
   const { title, description, code, price, status, stock, category, thumbnails } = req.body;
   const productos = JSON.parse(fs.readFileSync(path.resolve('src/public/productos.json')));
   const newProduct = {
-    id: Date.now(),
+    id: "EEG"+ Date.now(),
     title,
     description,
     code,
@@ -38,7 +38,7 @@ router.post('/', (req, res) => {
     status: status || true,
     stock,
     category,
-    //thumbnails: thumbnails || []
+    thumbnails: thumbnails || []
   };
   productos.push(newProduct);
   fs.writeFileSync(path.resolve('src/public/productos.json'), JSON.stringify(productos, null, 2));
