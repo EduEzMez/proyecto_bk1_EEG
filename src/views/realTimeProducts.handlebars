@@ -3,41 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/main.css">
   <title>Real-Time Products</title>
 </head>
 <body>
   <h1>Productos en Tiempo Real</h1>
-  <ul id="product-list"></ul>
-
-  <form id="product-form">
-    <input type="text" name="title" placeholder="Titulo del Producto" required />
-    <input type="text" name="description" placeholder="Descripcion del Producto" required />
-    <input type="number" name="code" placeholder="Código del Producto" required />
-    <input type="number" name="price" placeholder="Precio" required />
-    <input type="number" name="stock" placeholder="Stock" required />
-    <input type="text" name="category" placeholder="Categoria" required />
-    <button type="submit">Agregar Producto</button>
-    <div id="error-message" style="display: none; color: red; margin: 10px 0;"></div>
-  </form>
+  <section class="contenedor_padre">
+    <section class="contenedor_realtimeproduct">
+      <form id="product-form">
+        <input class="input_clase" type="text" name="title" placeholder="Titulo del Producto" required />
+        <input class="input_clase" type="text" name="description" placeholder="Descripcion del Producto" required />
+          <input class="input_clase" type="number" name="code" placeholder="Código del Producto" required />
+        <input class="input_clase" type="number" name="price" placeholder="Precio" required />
+        <input class="input_clase" type="number" name="stock" placeholder="Stock" required />
+        <input class="input_clase" type="text" name="category" placeholder="Categoria" required />
+        <button class="input_clase" type="submit">Agregar Producto</button>
+        <div id="error-message" style="display: none; color: red; margin: 10px 0;"></div>
+      </form>
+        <ul id="product-list"></ul>
+    </section>
+  </section>
+  
 
   <script src="/socket.io/socket.io.js"></script>
+  
   <script>
     const socket = io();
-
     const productList = document.getElementById('product-list');
     const productForm = document.getElementById('product-form');
     const errorMessage = document.getElementById('error-message');
+ 
 
     // Actualizar la lista de productos cuando el servidor lo notifique
     socket.on('products', (products) => {
       productList.innerHTML = '';
       products.forEach((product) => {
         const li = document.createElement('li');
-        li.textContent =` ID: ${product.id} | Titulo: ${product.title} | Descripcion: ${product.description} | Código producto:${product.code} | Precio: $${product.price} | Status: ${product.status} | Stock: ${product.stock} | Categoria: ${product.category}`;
+        li.textContent =` ID: ${product.id} | Titulo: ${product.title} | Descripcion: ${product.description} | Código producto:${product.code} | Precio: $${product.price}  | Stock: ${product.stock} | Categoria: ${product.category}`;
         productList.appendChild(li);
       });
     });
+
+  // Manejar la adición de un producto (lo ya implementado)
+  socket.on('addProduct', (productData) => {
+    products.push(productData);
+    io.emit('products', products); // Actualizar la lista de productos
+  });
 
     // Mostrar mensaje de error si el servidor lo envía
     socket.on('errorMessage', (message) => {
@@ -66,4 +77,3 @@
   </script>
 </body>
 </html>
-

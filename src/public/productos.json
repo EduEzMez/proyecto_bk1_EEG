@@ -1,22 +1,20 @@
 [
   {
-    "id": "EEG3414",
-    "title": "Teclado",
-    "description": "Teclado mecanico",
-    "code": "1",
-    "price": 1000,
-    "status": true,
-    "stock": 100,
-    "category": "Teclado",
-    "thumbnails": []
+    "title": "Teclado Mecanido",
+    "description": "Teclado mecanico color negro con teclas blancas",
+    "code": 1,
+    "price": 100000,
+    "stock": "10",
+    "category": "Teclado Mecanico",
+    "id": "8335"
   },
   {
-    "title": "Mouse",
-    "description": "Mouse optico",
+    "title": "Mouse Inalambrico",
+    "description": "Mouse Inalámbrico RGB",
     "code": 2,
-    "price": 4050,
-    "stock": "200",
-    "category": "Mouse",
-    "id": "EEG5560"
+    "price": 48500,
+    "stock": "10",
+    "category": "Mouse Inalambrico",
+    "id": "2427"
   }
 ]

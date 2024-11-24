@@ -21,7 +21,7 @@ class ProductManager {
     if (products.some(p => p.code === product.code)) {
       throw new Error(`El código ${product.code} ya está registrado.`);
     }
-    product.id = `EEG${Date.now().toString().slice(-4)}`;
+    product.id = `${Date.now().toString().slice(-4)}`;
     products.push(product);
     await this.saveProducts(products);
     return product;
