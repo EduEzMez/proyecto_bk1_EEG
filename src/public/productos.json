@@ -31,5 +31,34 @@
     "stock": 100,
     "category": "Teclado",
     "thumbnails": []
+  },
+  {
+    "title": "teclado",
+    "price": "5000",
+    "id": "EEG7153"
+  },
+  {
+    "title": "Bateria",
+    "price": "5000",
+    "code": "22",
+    "id": "EEG5066"
+  },
+  {
+    "title": "Bateria",
+    "price": "2000",
+    "code": "111111",
+    "id": "EEG7410"
+  },
+  {
+    "title": "Teclado ",
+    "price": 10022,
+    "code": 1,
+    "id": "EEG3536"
+  },
+  {
+    "title": "Bomba de agua ",
+    "price": 30000,
+    "code": 5,
+    "id": "EEG8185"
   }
 ]

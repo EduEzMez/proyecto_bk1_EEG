@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real-Time Products</title>
+</head>
+<body>
+  <h1>Productos en Tiempo Real</h1>
+  <ul id="product-list"></ul>
+
+  <form id="product-form">
+    <input type="text" name="title" placeholder="Nombre del Producto" required />
+    <input type="number" name="price" placeholder="Precio" required />
+    <input type="number" name="code" placeholder="Código" required />
+    <button type="submit">Agregar Producto</button>
+    <div id="error-message" style="display: none; color: red; margin: 10px 0;"></div>
+  </form>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+
+    const productList = document.getElementById('product-list');
+    const productForm = document.getElementById('product-form');
+    const errorMessage = document.getElementById('error-message');
+
+    // Actualizar la lista de productos cuando el servidor lo notifique
+    socket.on('products', (products) => {
+      productList.innerHTML = '';
+      products.forEach((product) => {
+        const li = document.createElement('li');
+        li.textContent = `${product.title} - $${product.price} - Código: ${product.code}`;
+        productList.appendChild(li);
+      });
+    });
+
+    // Mostrar mensaje de error si el servidor lo envía
+    socket.on('errorMessage', (message) => {
+      errorMessage.textContent = message;
+      errorMessage.style.display = 'block';
+      setTimeout(() => {
+        errorMessage.style.display = 'none';
+      }, 5000);
+    });
+
+    // Enviar nuevo producto al servidor
+    productForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(productForm);
+      const productData = Object.fromEntries(formData.entries());
+
+      // Convertir price y code a números
+      productData.price = parseFloat(productData.price);
+      productData.code = parseInt(productData.code);
+
+      socket.emit('addProduct', productData);
+
+      productForm.reset();
+    });
+  </script>
+</body>
+</html>
+
