@@ -51,4 +51,8 @@ body {
   button:hover {
     background-color: #003d80;
   }
+
+  #product-list{
+    font-size: 10px;
+  }
   

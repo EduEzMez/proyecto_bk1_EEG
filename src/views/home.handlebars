@@ -10,7 +10,19 @@
   <h1>Lista de Productos</h1>
   <ul>
     {{#each products}}
-      <li>{{this.title}} - ${{this.price}}</li>
+    <div>
+        <li>
+        <div>ID: {{this.id}}</div>
+        <div>Titulo: {{this.title}}</div>
+        <div>Descripcion: {{this.description}}</div>
+        <div>Codigo: {{this.code}}</div>
+        <div>Precio: ${{this.price}}</div>
+        <div>Status: {{this.status}}</div>
+        <div>Stock: {{this.stock}}</div>
+        <div>Categoria: {{this.category}}</div>
+        <div>Imagen: {{this.thumbnails}}</div>
+        </li>
+    </div>
     {{/each}}
   </ul>
 </body>

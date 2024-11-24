@@ -11,9 +11,12 @@
   <ul id="product-list"></ul>
 
   <form id="product-form">
-    <input type="text" name="title" placeholder="Nombre del Producto" required />
+    <input type="text" name="title" placeholder="Titulo del Producto" required />
+    <input type="text" name="description" placeholder="Descripcion del Producto" required />
+    <input type="number" name="code" placeholder="Código del Producto" required />
     <input type="number" name="price" placeholder="Precio" required />
-    <input type="number" name="code" placeholder="Código" required />
+    <input type="number" name="stock" placeholder="Stock" required />
+    <input type="text" name="category" placeholder="Categoria" required />
     <button type="submit">Agregar Producto</button>
     <div id="error-message" style="display: none; color: red; margin: 10px 0;"></div>
   </form>
@@ -31,7 +34,7 @@
       productList.innerHTML = '';
       products.forEach((product) => {
         const li = document.createElement('li');
-        li.textContent = `${product.title} - $${product.price} - Código: ${product.code}`;
+        li.textContent =` ID: ${product.id} | Titulo: ${product.title} | Descripcion: ${product.description} | Código producto:${product.code} | Precio: $${product.price} | Status: ${product.status} | Stock: ${product.stock} | Categoria: ${product.category}`;
         productList.appendChild(li);
       });
     });
