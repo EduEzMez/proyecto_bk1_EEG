@@ -1,76 +1,65 @@
 import express from 'express';
-import fs from 'fs';
-import path from 'path';
+import ProductManager from '../managers/ProductManager.js';
 
 const router = express.Router();
 
 // Ruta GET /api/products
-router.get('/', (req, res) => {
-  const { limit } = req.query;
-  const productos = JSON.parse(fs.readFileSync(path.resolve('src/public/productos.json')));
-  if (limit) {
-    return res.json(productos.slice(0, limit));
+router.get('/', async (req, res) => {
+  try {
+    const { limit } = req.query;
+    const products = await ProductManager.getProducts();
+    if (limit) {
+      return res.json(products.slice(0, limit));
+    }
+    res.json(products);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
-  res.json(productos);
 });
 
 // Ruta GET /api/products/:pid
-router.get('/:pid', (req, res) => {
-  const { pid } = req.params;
-  const productos = JSON.parse(fs.readFileSync(path.resolve('src/public/productos.json')));
-  const producto = productos.find(p => p.id == pid);
-  if (producto) {
-    return res.json(producto);
+router.get('/:pid', async (req, res) => {
+  try {
+    const product = await ProductManager.getProductById(req.params.pid);
+    if (!product) return res.status(404).json({ message: 'Producto no encontrado' });
+    res.json(product);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
-  res.status(404).json({ message: 'Producto no encontrado' });
 });
 
 // Ruta POST /api/products
-router.post('/', (req, res) => {
-  const { title, description, code, price, status, stock, category, thumbnails } = req.body;
-  const productos = JSON.parse(fs.readFileSync(path.resolve('src/public/productos.json')));
-  const newProduct = {
-    id: "EEG" + Date.now(),
-    title,
-    description,
-    code,
-    price,
-    status: status || true,
-    stock,
-    category,
-    thumbnails: thumbnails || []
-  };
-  productos.push(newProduct);
-  fs.writeFileSync(path.resolve('src/public/productos.json'), JSON.stringify(productos, null, 2));
-  res.status(201).json(newProduct);
+router.post('/', async (req, res) => {
+  try {
+    const newProduct = await ProductManager.addProduct(req.body);
+    res.status(201).json(newProduct);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
 });
 
 // Ruta PUT /api/products/:pid
-router.put('/:pid', (req, res) => {
-  const { pid } = req.params;
-  const { title, description, code, price, status, stock, category, thumbnails } = req.body;
-  const productos = JSON.parse(fs.readFileSync(path.resolve('src/public/productos.json')));
-  const index = productos.findIndex(p => p.id == pid);
-  if (index !== -1) {
-    productos[index] = { ...productos[index], title, description, code, price, status, stock, category, thumbnails };
-    fs.writeFileSync(path.resolve('src/public/productos.json'), JSON.stringify(productos, null, 2));
-    return res.json(productos[index]);
+router.put('/:pid', async (req, res) => {
+  try {
+    const updatedProduct = await ProductManager.updateProduct(req.params.pid, req.body);
+    res.json(updatedProduct);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
   }
-  res.status(404).json({ message: 'Producto no encontrado' });
 });
 
 // Ruta DELETE /api/products/:pid
-router.delete('/:pid', (req, res) => {
-  const { pid } = req.params;
-  const productos = JSON.parse(fs.readFileSync(path.resolve('src/public/productos.json')));
-  const index = productos.findIndex(p => p.id == pid);
-  if (index !== -1) {
-    productos.splice(index, 1);
-    fs.writeFileSync(path.resolve('src/public/productos.json'), JSON.stringify(productos, null, 2));
-    return res.status(204).send();
+router.delete('/:pid', async (req, res) => {
+  try {
+    await ProductManager.deleteProduct(req.params.pid);
+    res.status(204).send();
+  } catch (error) {
+    res.status(404).json({ message: error.message });
   }
-  res.status(404).json({ message: 'Producto no encontrado' });
 });
 
 export default router;
+
+
+
 

@@ -1,29 +1,35 @@
 [
   {
-    "id": "EEG1731189264378",
-    "title": "Teclado 1",
-    "description": "Teclado blanco teclas verdes",
-    "code": "TEC001",
-    "price": 3000,
-    "status": true,
-    "stock": 200,
-    "category": "Teclado",
-    "thumbnails": []
-  },
-  {
-    "id": "EEG1731189358722",
-    "title": "Teclado 2",
-    "description": "Teclado negro teclas blancas",
-    "code": "TEC002",
-    "price": 3000,
+    "id": "EEG3414",
+    "title": "Teclado",
+    "description": "Teclado mecanico",
+    "code": "1",
+    "price": 1000,
     "status": true,
     "stock": 100,
     "category": "Teclado",
     "thumbnails": []
   },
   {
-    "id": "EEG1731371943346",
+    "id": "EEG9618",
+    "title": "Teclado",
+    "description": "Teclado mecanico",
+    "code": "2",
+    "price": 2000,
     "status": true,
+    "stock": 100,
+    "category": "Teclado",
+    "thumbnails": []
+  },
+  {
+    "id": "EEG9076",
+    "title": "Teclado",
+    "description": "Teclado mecanico",
+    "code": "3",
+    "price": 4000,
+    "status": true,
+    "stock": 100,
+    "category": "Teclado",
     "thumbnails": []
   }
 ]

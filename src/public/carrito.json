@@ -1,19 +1,19 @@
 [
-  {
-    "id": 1731189622778,
-    "products": [
-      {
-        "product": "EEG1731189264378",
-        "quantity": 1
-      },
-      {
-        "product": "EEG1731189358722",
-        "quantity": 1
-      }
-    ]
-  },
-  {
+    {
+        "id": 1731189622778,
+        "products": [
+        {
+            "product": "1",
+            "quantity": 1
+        },
+        {
+            "product": "2",
+            "quantity": 1
+        }
+        ]
+    },
+    {
     "id": 1731371931410,
     "products": []
-  }
+    }
 ]
