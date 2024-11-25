@@ -82,7 +82,7 @@ body {
 
   .contenedor_realtimeproduct{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
   }
 
   .input_clase{
