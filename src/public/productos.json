@@ -16,5 +16,14 @@
     "stock": "10",
     "category": "Mouse Inalambrico",
     "id": "2427"
+  },
+  {
+    "title": "Monitor 24",
+    "description": "Monitos 24 Led",
+    "code": 3,
+    "price": 250000,
+    "stock": "10",
+    "category": "Monitor Led",
+    "id": "3485"
   }
 ]
